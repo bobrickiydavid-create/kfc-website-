@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>KFC Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">KFC</div>
+    <nav class="nav">
+      <a href="#">Strona główna</a>
+      <a href="#">Menu</a>
+      <a href="#">O nas</a>
+      <a href="#">Kontakt</a>
+      <a href="#" onclick="openModal('zamowieniaModal')">Zamówienia</a>
+      <a href="#" onclick="openModal('dostawaModal')">Dostawa</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-content">
+      <h1>Tak dobre, że oblizujesz palce.</h1>
+      <p>Nasze chrupiące kurczaki i złociste frytki przygotowywane są według sekretnej receptury, która zachwyca miliony smakoszy na całym świecie. Zamów już teraz i poczuj prawdziwy smak KFC!</p>
+      <a class="btn" href="#" onclick="openModal('zamowieniaModal')">Zamów teraz</a>
+    </div>
+    <div class="hero-media">
+      <div class="card">
+        <div class="product">
+          <img src="images/frytki.jpg" 
+               alt="French Fries" class="food-img">
+          <div class="caption">Secret Recipe Fries</div>
+        </div>
+        <div class="product">
+          <img src="images/chicken.jpg" 
+               alt="Fried Chicken" class="food-img">
+          <div class="caption">Crispy Fried Chicken</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="zamowieniaModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('zamowieniaModal')">&times;</span>
+      <h2>Zamówienia</h2>
+      <form onsubmit="event.preventDefault(); 
+        const prod=this.querySelector('select').value; 
+        const qty=this.querySelector('input').value; 
+        alert(`Zamówienie przyjęte ✅: ${qty} × ${prod}`);">
+        <label>
+          Wybierz produkt:
+          <select>
+            <option>French Fries</option>
+            <option>Fried Chicken</option>
+          </select>
+        </label>
+        <label>
+          Ilość:
+          <input type="number" min="1" value="1">
+        </label>
+        <button type="submit">Zamów</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="dostawaModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('dostawaModal')">&times;</span>
+      <h2>Dostawa</h2>
+      <ul>
+        <li>Czas dostawy: 30–45 minut</li>
+        <li>Koszt dostawy: 9,99 zł</li>
+        <li>Darmowa dostawa od 100 zł</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span class="tagline">Zawsze świeże</span>
+    <span class="arrow">→</span>
+  </footer>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    window.onclick = function(event) {
+      document.querySelectorAll('.modal').forEach(m => {
+        if (event.target === m) m.style.display = 'none';
+      });
+    }
+  </script>
+</body>
+</html>
+
