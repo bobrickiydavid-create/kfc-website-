@@ -47,7 +47,6 @@ int main() {
         if (n <= 0) { close(client_fd); continue; }
         buffer[n] = '\0';
 
-        // Простая маршрутизация: всегда отдаём index.html
         std::string body = load_file("index.html");
         std::ostringstream resp;
         resp << "HTTP/1.1 200 OK\r\n"
